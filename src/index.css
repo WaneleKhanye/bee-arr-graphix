@@ -1,0 +1,83 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
+
+  /* Charcoal / black core */
+  --color-ink: #08090a;
+  --color-charcoal: #101113;
+  --color-charcoal-soft: #17181b;
+  --color-charcoal-line: #232427;
+
+  /* Premium gold accent — weddings, portraits, studio work */
+  --color-gold: #c9a24b;
+  --color-gold-soft: #e6cd8a;
+  --color-gold-dim: #6b5a2c;
+
+  /* Electric sky accent — reserved for drone / aerial services */
+  --color-sky: #34e3e0;
+  --color-sky-soft: #9df4f2;
+  --color-sky-dim: #103c3b;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-ink);
+    color: #f5f4f0;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--color-gold);
+    color: #0a0a0a;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-charcoal-line);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold-dim);
+  }
+}
+
+@utility text-gradient-gold {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-gold-soft),
+    var(--color-gold) 60%,
+    var(--color-gold-dim)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-sky {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-sky-soft),
+    var(--color-sky)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
