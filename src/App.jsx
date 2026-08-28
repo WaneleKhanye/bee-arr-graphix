@@ -1,5 +1,7 @@
 import Navbar from './components/Navbar'
 import Hero from './sections/Hero'
+import SelectedWork from './sections/SelectedWork'
+import FeaturedDrone from './sections/FeaturedDrone'
 
 function App() {
   return (
@@ -7,6 +9,8 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <SelectedWork />
+        <FeaturedDrone />
       </main>
     </div>
   )
