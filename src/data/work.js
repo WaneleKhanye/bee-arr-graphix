@@ -1,8 +1,8 @@
 import maleOutdoorPortrait from '../assets/images/male-outdoor-portrait.jpeg'
 import femalePortrait from '../assets/images/female-portrait.jpeg'
 import graduationPortrait from '../assets/images/graduation-portrait.jpeg'
-import traditionalWeddingFamily from '../assets/images/traditional-wedding-family.jpeg'
-import weddingReceptionEvent from '../assets/images/wedding-reception-event.jpeg'
+import traditionalWeddingCeremony from '../assets/images/traditional-wedding-ceremony.jpeg'
+import weddingReceptionHall from '../assets/images/wedding-reception-hall.jpeg'
 
 export const workItems = [
   {
@@ -30,7 +30,7 @@ export const workItems = [
     position: 'object-center',
   },
   {
-    image: traditionalWeddingFamily,
+    image: traditionalWeddingCeremony,
     category: 'Weddings',
     title: 'Traditional Ceremony',
     alt: 'Family in traditional wedding attire walking together',
@@ -38,7 +38,7 @@ export const workItems = [
     position: 'object-[50%_20%]',
   },
   {
-    image: weddingReceptionEvent,
+    image: weddingReceptionHall,
     category: 'Events',
     title: 'Reception Coverage',
     alt: 'Wide view of a decorated wedding reception hall full of guests',
