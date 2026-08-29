@@ -6,15 +6,14 @@ import {
   MessageCircle,
   Phone,
 } from 'lucide-react'
-import { contactDetails, serviceOptions } from '../data/booking'
+import { contactDetails, serviceOptions, whatsappHref } from '../data/booking'
 
 const inputClass =
-  'w-full rounded-xl border border-charcoal-line bg-charcoal-soft/60 px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors duration-300 focus:border-gold/60 [color-scheme:dark]'
+  'w-full rounded-xl border border-charcoal-line bg-charcoal-soft/60 px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors duration-300 focus:border-gold/60 focus-visible:ring-2 focus-visible:ring-gold/50 [color-scheme:dark]'
 
 const labelClass =
   'mb-2 block text-xs font-semibold tracking-[0.2em] text-white/50 uppercase'
 
-const whatsappHref = `https://wa.me/${contactDetails.whatsappNumber}`
 const mailHref = `mailto:${contactDetails.email}`
 const directionsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactDetails.address)}`
 
@@ -174,9 +173,9 @@ export default function BookingContact() {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col rounded-2xl border border-charcoal-line bg-charcoal-soft/40 p-6 sm:p-8"
           >
-            <p className="text-xs font-semibold tracking-[0.3em] text-white/40 uppercase">
+            <h3 className="text-xs font-semibold tracking-[0.3em] text-white/40 uppercase">
               Contact Details
-            </p>
+            </h3>
 
             <ul className="mt-5 flex flex-col gap-4">
               {contactRows.map(({ icon: Icon, label, value, href }) => (

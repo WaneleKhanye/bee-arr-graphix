@@ -1,6 +1,6 @@
 import { MessageCircle } from 'lucide-react'
 import { FacebookIcon, InstagramIcon } from '../components/icons'
-import { contactDetails } from './booking'
+import { whatsappHref } from './booking'
 
 export const socialLinks = [
   {
@@ -16,6 +16,6 @@ export const socialLinks = [
   {
     icon: MessageCircle,
     label: 'WhatsApp',
-    href: `https://wa.me/${contactDetails.whatsappNumber}`,
+    href: whatsappHref,
   },
 ]

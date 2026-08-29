@@ -47,8 +47,8 @@ export default function SelectedWork() {
                 className={`h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${item.position}`}
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/0 to-ink/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              <figcaption className="absolute inset-x-0 bottom-0 flex translate-y-3 items-center justify-between p-5 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/0 to-ink/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100" />
+              <figcaption className="absolute inset-x-0 bottom-0 flex translate-y-3 items-center justify-between p-5 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
                 <div>
                   <p className="text-[0.65rem] font-semibold tracking-[0.25em] text-sky-soft uppercase">
                     {item.category}
@@ -57,10 +57,13 @@ export default function SelectedWork() {
                     {item.title}
                   </p>
                 </div>
-                <span className="flex items-center gap-1 text-xs font-semibold tracking-wide text-white/80">
+                <a
+                  href="#contact"
+                  className="flex items-center gap-1 text-xs font-semibold tracking-wide text-white/80 hover:text-white"
+                >
                   View Project
                   <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
-                </span>
+                </a>
               </figcaption>
             </motion.figure>
           ))}

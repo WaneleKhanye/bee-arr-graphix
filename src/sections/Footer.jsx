@@ -1,10 +1,9 @@
 import { Mail, MapPin, Phone } from 'lucide-react'
 import Logo from '../components/Logo'
-import { contactDetails } from '../data/booking'
+import { contactDetails, whatsappHref } from '../data/booking'
 import { navLinks } from '../data/navigation'
 import { socialLinks } from '../data/social'
 
-const whatsappHref = `https://wa.me/${contactDetails.whatsappNumber}`
 const mailHref = `mailto:${contactDetails.email}`
 const directionsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactDetails.address)}`
 
@@ -16,9 +15,9 @@ const contactRows = [
 
 function ColumnHeading({ children }) {
   return (
-    <p className="text-xs font-semibold tracking-[0.3em] text-white/40 uppercase">
+    <h3 className="text-xs font-semibold tracking-[0.3em] text-white/40 uppercase">
       {children}
-    </p>
+    </h3>
   )
 }
 
