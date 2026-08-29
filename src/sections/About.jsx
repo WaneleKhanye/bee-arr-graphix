@@ -24,6 +24,7 @@ function Photo() {
         <img
           src={aboutImage}
           alt="Bee arR Graphix behind the lens, on location"
+          loading="lazy"
           className="h-full w-full object-cover object-[50%_15%]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
@@ -128,9 +129,9 @@ export default function About() {
             variants={fadeUp}
             className="mt-10"
           >
-            <p className="text-xs font-semibold tracking-[0.3em] text-white/40 uppercase">
+            <h3 className="text-xs font-semibold tracking-[0.3em] text-white/40 uppercase">
               Why choose us
-            </p>
+            </h3>
             <ul className="mt-5 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
               {whyChooseUs.map(({ icon: Icon, title, featured }) => (
                 <li key={title} className="flex items-center gap-3">

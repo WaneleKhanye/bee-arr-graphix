@@ -26,6 +26,7 @@ export default function DroneReel({ className = '' }) {
         <img
           src={droneVideoPoster}
           alt="Aerial drone still of an event marquee"
+          loading="lazy"
           className="h-full w-full object-cover"
         />
       )}

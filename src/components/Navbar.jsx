@@ -73,6 +73,7 @@ export default function Navbar() {
           className="inline-flex items-center justify-center rounded-full border border-charcoal-line p-2.5 text-white lg:hidden"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
+          aria-controls="mobile-menu"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -85,6 +86,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.35, ease: 'easeInOut' }}
+            id="mobile-menu"
             className="overflow-hidden border-t border-charcoal-line bg-ink/95 backdrop-blur-md lg:hidden"
           >
             <ul className="flex flex-col gap-1 px-6 py-6">
