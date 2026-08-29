@@ -4,6 +4,7 @@ import Services from './sections/Services'
 import SelectedWork from './sections/SelectedWork'
 import FeaturedDrone from './sections/FeaturedDrone'
 import About from './sections/About'
+import BookingContact from './sections/BookingContact'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <SelectedWork />
         <FeaturedDrone />
         <About />
+        <BookingContact />
       </main>
     </div>
   )
