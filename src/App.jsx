@@ -3,6 +3,7 @@ import Hero from './sections/Hero'
 import Services from './sections/Services'
 import SelectedWork from './sections/SelectedWork'
 import FeaturedDrone from './sections/FeaturedDrone'
+import About from './sections/About'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Services />
         <SelectedWork />
         <FeaturedDrone />
+        <About />
       </main>
     </div>
   )
