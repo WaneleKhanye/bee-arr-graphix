@@ -19,4 +19,4 @@ export const whatsappMessage = "Hi Bee arR Graphix, I'd like to book a shoot."
 
 export const whatsappHref = `https://wa.me/${contactDetails.whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`
 
-export const formspreeEndpoint = 'https://formspree.io/f/mjyvkdvy'
+export const formspreeEndpoint = 'https://formspree.io/f/xnpqnygk'
