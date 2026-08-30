@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   ArrowUpRight,
@@ -6,7 +7,12 @@ import {
   MessageCircle,
   Phone,
 } from 'lucide-react'
-import { contactDetails, serviceOptions, whatsappHref } from '../data/booking'
+import {
+  contactDetails,
+  formspreeEndpoint,
+  serviceOptions,
+  whatsappHref,
+} from '../data/booking'
 
 const inputClass =
   'w-full rounded-xl border border-charcoal-line bg-charcoal-soft/60 px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors duration-300 focus:border-gold/60 focus-visible:ring-2 focus-visible:ring-gold/50 [color-scheme:dark]'
@@ -23,11 +29,38 @@ const contactRows = [
   { icon: Phone, label: 'Phone / WhatsApp', value: contactDetails.phoneDisplay, href: whatsappHref },
 ]
 
-function handleSubmit(event) {
-  event.preventDefault()
-}
+const SUCCESS_MESSAGE =
+  "Booking request received! Thank you for contacting Bee arR Graphix. We’ll get back to you shortly."
+const ERROR_MESSAGE =
+  'Something went wrong. Please try again or contact us on WhatsApp.'
 
 export default function BookingContact() {
+  const [status, setStatus] = useState('idle')
+  const isSubmitting = status === 'submitting'
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+    const form = event.currentTarget
+    setStatus('submitting')
+
+    try {
+      const response = await fetch(formspreeEndpoint, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      })
+
+      if (response.ok) {
+        setStatus('success')
+        form.reset()
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
+
   return (
     <section id="contact" className="bg-ink px-6 py-24 lg:px-16 lg:py-32">
       <div className="mx-auto max-w-7xl">
@@ -157,13 +190,25 @@ export default function BookingContact() {
               />
             </div>
 
+            <input type="hidden" name="_subject" value="New Booking Request — Bee arR Graphix" />
+
             <button
               type="submit"
-              className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-soft to-gold px-7 py-4 text-sm font-semibold tracking-wide text-ink transition-transform duration-300 hover:scale-[1.02] sm:w-auto"
+              disabled={isSubmitting}
+              className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-soft to-gold px-7 py-4 text-sm font-semibold tracking-wide text-ink transition-transform duration-300 hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100 sm:w-auto"
             >
-              Request Booking
+              {isSubmitting ? 'Sending...' : 'Request Booking'}
               <ArrowUpRight className="h-4 w-4" strokeWidth={2} />
             </button>
+
+            <div aria-live="polite" role="status" className="mt-4">
+              {status === 'success' && (
+                <p className="text-sm font-medium text-gold-soft">{SUCCESS_MESSAGE}</p>
+              )}
+              {status === 'error' && (
+                <p className="text-sm font-medium text-red-400">{ERROR_MESSAGE}</p>
+              )}
+            </div>
           </motion.form>
 
           <motion.div
