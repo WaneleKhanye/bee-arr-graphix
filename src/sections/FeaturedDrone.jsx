@@ -2,6 +2,12 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight, Check, Drone } from 'lucide-react'
 import DroneReel from '../components/DroneReel'
 import { droneServices } from '../data/drone-services'
+import droneCarVideo from '../assets/video/drone-car-showcase.mp4'
+import droneCarPoster from '../assets/images/drone-car-showcase-poster.jpg'
+import droneNightVideo from '../assets/video/drone-night-flyover.mp4'
+import droneNightPoster from '../assets/images/drone-night-flyover-poster.jpg'
+import droneOriginalVideo from '../assets/video/drone-coverage.mp4'
+import droneOriginalPoster from '../assets/images/drone-coverage-poster.jpg'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -69,9 +75,28 @@ export default function FeaturedDrone() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-8 lg:hidden"
+            className="mt-8 flex flex-col gap-5 lg:hidden"
           >
-            <DroneReel />
+            <DroneReel
+              videoSrc={droneCarVideo}
+              posterSrc={droneCarPoster}
+              posterAlt="Aerial drone still of a custom-wrapped car at an event"
+              label="Aerial Cinematography"
+            />
+            <DroneReel
+              videoSrc={droneNightVideo}
+              posterSrc={droneNightPoster}
+              posterAlt="Aerial night drone view of an event tent setup with the city skyline in the background"
+              label="More Aerial Footage"
+              autoPlay={false}
+            />
+            <DroneReel
+              videoSrc={droneOriginalVideo}
+              posterSrc={droneOriginalPoster}
+              posterAlt="Aerial drone still of an event marquee"
+              label="Event Aerial Coverage"
+              autoPlay={false}
+            />
           </motion.div>
 
           <motion.ul
@@ -118,9 +143,30 @@ export default function FeaturedDrone() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="hidden w-full lg:block"
+          className="hidden w-full flex-col gap-4 lg:flex"
         >
-          <DroneReel />
+          <DroneReel
+            videoSrc={droneCarVideo}
+            posterSrc={droneCarPoster}
+            posterAlt="Aerial drone still of a custom-wrapped car at an event"
+            label="Aerial Cinematography"
+          />
+          <div className="grid grid-cols-2 gap-4">
+            <DroneReel
+              videoSrc={droneNightVideo}
+              posterSrc={droneNightPoster}
+              posterAlt="Aerial night drone view of an event tent setup with the city skyline in the background"
+              label="More Aerial Footage"
+              autoPlay={false}
+            />
+            <DroneReel
+              videoSrc={droneOriginalVideo}
+              posterSrc={droneOriginalPoster}
+              posterAlt="Aerial drone still of an event marquee"
+              label="Event Aerial Coverage"
+              autoPlay={false}
+            />
+          </div>
         </motion.div>
       </div>
     </section>

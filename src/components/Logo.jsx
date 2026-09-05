@@ -1,4 +1,4 @@
-import { Aperture } from 'lucide-react'
+import logoMark from '../assets/images/bee-arr-graphix-lens-mark.jpg'
 
 export default function Logo({ className = '' }) {
   return (
@@ -7,10 +7,11 @@ export default function Logo({ className = '' }) {
       className={`group flex items-center gap-2.5 ${className}`}
       aria-label="Bee arR Graphix — home"
     >
-      <span className="relative flex h-9 w-9 items-center justify-center rounded-full border border-gold-dim/70 bg-charcoal-soft transition-colors duration-300 group-hover:border-gold">
-        <Aperture
-          className="h-4.5 w-4.5 text-gold-soft transition-transform duration-700 group-hover:rotate-90"
-          strokeWidth={1.75}
+      <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-gold-dim/70 bg-charcoal-soft transition-colors duration-300 group-hover:border-gold">
+        <img
+          src={logoMark}
+          alt=""
+          className="h-full w-full object-cover transition-transform duration-700 group-hover:rotate-90"
         />
       </span>
       <span className="flex flex-col leading-none">
