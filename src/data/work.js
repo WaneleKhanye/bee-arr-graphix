@@ -9,6 +9,8 @@ import goldTableSetting from '../assets/images/gold-table-setting.jpg'
 import eventGuestsSmiling from '../assets/images/event-guests-smiling.jpg'
 import birthday21stDecor from '../assets/images/birthday-21st-decor.jpg'
 import studioPortrait from '../assets/images/studio-portrait-turquoise-dress.jpg'
+import studioDuoPortrait from '../assets/images/studio-duo-portrait.jpg'
+import elegantStudioPortrait from '../assets/images/elegant-studio-portrait.jpg'
 import droneCoveragePoster from '../assets/images/drone-coverage-poster.jpg'
 import droneEquipment from '../assets/images/drone-equipment.jpg'
 
@@ -98,6 +100,22 @@ export const workItems = [
     category: 'Portraits',
     title: 'Studio Portrait',
     alt: 'Studio portrait of a smiling woman in a turquoise dress and pink head wrap',
+    aspect: 'aspect-[4/5]',
+    position: 'object-center',
+  },
+  {
+    image: studioDuoPortrait,
+    category: 'Portraits',
+    title: 'Studio Duo Portrait',
+    alt: "Two women styling each other's hair in a studio session",
+    aspect: 'aspect-[9/16]',
+    position: 'object-center',
+  },
+  {
+    image: elegantStudioPortrait,
+    category: 'Portraits',
+    title: 'Elegant Studio Portrait',
+    alt: 'Studio portrait of a smiling woman in a black dress against a white background',
     aspect: 'aspect-[4/5]',
     position: 'object-center',
   },
