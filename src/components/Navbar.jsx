@@ -22,6 +22,23 @@ export default function Navbar() {
     }
   }, [open])
 
+  // Closing the mobile menu re-renders and animates #mobile-menu's height/
+  // opacity in the same tick as the click. That layout change races with —
+  // and reliably cancels — the browser's native smooth-scroll-to-anchor for
+  // an <a href="#…"> click, so the page hash updates but never actually
+  // scrolls. Handling navigation explicitly (preventDefault + a
+  // requestAnimationFrame-deferred scrollIntoView) sidesteps that race.
+  const navigateTo = (href) => (event) => {
+    event.preventDefault()
+    const target = document.querySelector(href)
+    setOpen(false)
+    document.documentElement.style.overflow = ''
+    requestAnimationFrame(() => {
+      target?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+    window.history.pushState(null, '', href)
+  }
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
@@ -94,7 +111,7 @@ export default function Navbar() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    onClick={() => setOpen(false)}
+                    onClick={navigateTo(link.href)}
                     className={`flex items-center gap-2 rounded-xl px-3 py-3 text-base font-medium ${
                       link.highlight
                         ? 'text-sky-soft'
@@ -110,7 +127,7 @@ export default function Navbar() {
               ))}
               <a
                 href="#contact"
-                onClick={() => setOpen(false)}
+                onClick={navigateTo('#contact')}
                 className="mt-3 inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-gold-soft to-gold px-5 py-3 text-sm font-semibold text-ink"
               >
                 Book a Shoot
