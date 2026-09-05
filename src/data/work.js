@@ -10,6 +10,7 @@ import eventGuestsSmiling from '../assets/images/event-guests-smiling.jpg'
 import birthday21stDecor from '../assets/images/birthday-21st-decor.jpg'
 import studioPortrait from '../assets/images/studio-portrait-turquoise-dress.jpg'
 import droneCoveragePoster from '../assets/images/drone-coverage-poster.jpg'
+import droneEquipment from '../assets/images/drone-equipment.jpg'
 
 export const workItems = [
   {
@@ -106,6 +107,14 @@ export const workItems = [
     title: 'Aerial Event Coverage',
     alt: 'Aerial drone view of an outdoor event setup with tents and lounge seating',
     aspect: 'aspect-[16/9]',
+    position: 'object-center',
+  },
+  {
+    image: droneEquipment,
+    category: 'Drone',
+    title: 'Drone Equipment',
+    alt: 'Professional aerial photography equipment',
+    aspect: 'aspect-[3/2]',
     position: 'object-center',
   },
 ]
