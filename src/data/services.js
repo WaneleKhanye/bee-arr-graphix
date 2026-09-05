@@ -1,4 +1,4 @@
-import femalePortrait from '../assets/images/female-portrait.jpeg'
+import studioPortrait from '../assets/images/studio-portrait-turquoise-dress.jpg'
 import graduationPortrait from '../assets/images/graduation-portrait.jpeg'
 import traditionalWeddingCeremony from '../assets/images/traditional-wedding-ceremony.jpeg'
 import maleOutdoorPortrait from '../assets/images/male-outdoor-portrait.jpeg'
@@ -6,10 +6,10 @@ import weddingReceptionHall from '../assets/images/wedding-reception-hall.jpeg'
 
 export const services = [
   {
-    image: femalePortrait,
+    image: studioPortrait,
     title: 'Studio & Portrait Photography',
     description: 'Timeless portrait sessions crafted around you and your story.',
-    alt: 'Portrait of a woman in a headscarf smiling outdoors',
+    alt: 'Studio portrait of a smiling woman in a turquoise dress and pink head wrap',
     aspect: 'aspect-[4/3] sm:aspect-[4/5]',
     position: 'object-center',
   },
