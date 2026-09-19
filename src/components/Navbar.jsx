@@ -4,6 +4,10 @@ import { Menu, X, Drone, ArrowUpRight } from 'lucide-react'
 import Logo from './Logo'
 import { navLinks } from '../data/navigation'
 
+// Kept in sync with the mobile menu's close transition below so the scroll
+// waits until that animation has actually finished.
+const MENU_CLOSE_MS = 350
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
@@ -22,20 +26,19 @@ export default function Navbar() {
     }
   }, [open])
 
-  // Closing the mobile menu re-renders and animates #mobile-menu's height/
-  // opacity in the same tick as the click. That layout change races with —
-  // and reliably cancels — the browser's native smooth-scroll-to-anchor for
-  // an <a href="#…"> click, so the page hash updates but never actually
-  // scrolls. Handling navigation explicitly (preventDefault + a
-  // requestAnimationFrame-deferred scrollIntoView) sidesteps that race.
+  // Starting the smooth scroll while the menu's close transition is still
+  // animating makes the two animations compete for the compositor thread —
+  // on lower-powered mobile GPUs the newly-started scroll can get dropped
+  // silently. Waiting until the close transition has actually finished
+  // before starting the scroll avoids that contention.
   const navigateTo = (href) => (event) => {
     event.preventDefault()
     const target = document.querySelector(href)
     setOpen(false)
     document.documentElement.style.overflow = ''
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       target?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    })
+    }, MENU_CLOSE_MS)
     window.history.pushState(null, '', href)
   }
 
@@ -102,7 +105,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.35, ease: 'easeInOut' }}
+            transition={{ duration: MENU_CLOSE_MS / 1000, ease: 'easeInOut' }}
             id="mobile-menu"
             className="overflow-hidden border-t border-charcoal-line bg-ink/95 backdrop-blur-md lg:hidden"
           >
