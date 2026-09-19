@@ -4,7 +4,14 @@ import { ArrowRight } from 'lucide-react'
 import { workItems } from '../data/work'
 import Lightbox from '../components/Lightbox'
 
-const categories = ['All', 'Weddings', 'Portraits', 'Graduations', 'Events', 'Drone']
+const categories = [
+  { value: 'All', label: 'All' },
+  { value: 'Weddings', label: 'Weddings' },
+  { value: 'Portraits', label: 'Studio & Portraits' },
+  { value: 'Graduations', label: 'Graduations' },
+  { value: 'Events', label: 'Events' },
+  { value: 'Drone', label: 'Drone' },
+]
 
 export default function SelectedWork() {
   const [activeCategory, setActiveCategory] = useState('All')
@@ -57,16 +64,16 @@ export default function SelectedWork() {
           aria-label="Filter portfolio by category"
           className="mt-10 flex gap-2.5 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] sm:flex-wrap sm:overflow-visible [&::-webkit-scrollbar]:hidden"
         >
-          {categories.map((category) => {
-            const isActive = activeCategory === category
-            const isDrone = category === 'Drone'
+          {categories.map(({ value, label }) => {
+            const isActive = activeCategory === value
+            const isDrone = value === 'Drone'
 
             return (
               <button
-                key={category}
+                key={value}
                 type="button"
                 aria-pressed={isActive}
-                onClick={() => handleCategoryChange(category)}
+                onClick={() => handleCategoryChange(value)}
                 className={`shrink-0 rounded-full border px-4 py-2 text-xs font-semibold tracking-wide whitespace-nowrap uppercase transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-ink focus-visible:outline-none ${
                   isActive
                     ? isDrone
@@ -75,7 +82,7 @@ export default function SelectedWork() {
                     : 'border-charcoal-line text-white/50 hover:border-white/25 hover:text-white/80 focus-visible:ring-white/40'
                 }`}
               >
-                {category}
+                {label}
               </button>
             )
           })}
