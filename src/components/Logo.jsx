@@ -7,9 +7,15 @@ export default function Logo({ className = '' }) {
       className={`flex items-center transition-opacity duration-300 hover:opacity-90 ${className}`}
       aria-label="Bee arR Graphix — home"
     >
-      <span className="flex h-[72px] items-center rounded-xl bg-white px-3">
-        <img src={logo} alt="" className="h-14 w-auto" />
-      </span>
+      <img
+        src={logo}
+        alt=""
+        className="h-16 w-auto"
+        style={{
+          filter:
+            'drop-shadow(0 0 1px rgba(255,255,255,0.9)) drop-shadow(0 0 4px rgba(255,255,255,0.55)) drop-shadow(0 0 10px rgba(255,255,255,0.35))',
+        }}
+      />
     </a>
   )
 }
