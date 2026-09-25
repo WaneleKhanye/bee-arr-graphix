@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   ArrowUpRight,
+  FileText,
   Mail,
   MapPin,
   MessageCircle,
@@ -13,6 +14,7 @@ import {
   serviceOptions,
   whatsappHref,
 } from '../data/booking'
+import PolicyModal from '../components/PolicyModal'
 
 const inputClass =
   'w-full rounded-xl border border-charcoal-line bg-charcoal-soft/60 px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors duration-300 focus:border-gold/60 focus-visible:ring-2 focus-visible:ring-gold/50 [color-scheme:dark]'
@@ -36,6 +38,7 @@ const ERROR_MESSAGE =
 
 export default function BookingContact() {
   const [status, setStatus] = useState('idle')
+  const [policyOpen, setPolicyOpen] = useState(false)
   const isSubmitting = status === 'submitting'
 
   async function handleSubmit(event) {
@@ -80,6 +83,15 @@ export default function BookingContact() {
             Tell us about your shoot and we&apos;ll get back to you — or
             message us directly on WhatsApp for the fastest response.
           </p>
+
+          <button
+            type="button"
+            onClick={() => setPolicyOpen(true)}
+            className="mt-5 inline-flex items-center gap-2 rounded-full border border-charcoal-line px-4 py-2.5 text-xs font-semibold tracking-wide text-white/70 transition-colors duration-300 hover:border-gold/50 hover:text-gold-soft"
+          >
+            <FileText className="h-3.5 w-3.5" strokeWidth={2} />
+            Booking &amp; Cancellation Policy
+          </button>
         </motion.div>
 
         <div className="mt-14 grid items-start gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-12">
@@ -280,6 +292,8 @@ export default function BookingContact() {
           </motion.div>
         </div>
       </div>
+
+      {policyOpen && <PolicyModal onClose={() => setPolicyOpen(false)} />}
     </section>
   )
 }
