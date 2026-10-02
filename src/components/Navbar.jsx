@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X, Drone, ArrowUpRight } from 'lucide-react'
 import Logo from './Logo'
@@ -8,12 +8,31 @@ import { navLinks } from '../data/navigation'
 // waits until that animation has actually finished.
 const MENU_CLOSE_MS = 350
 
+const HIDE_THRESHOLD_PX = 80
+const SCROLL_DELTA_PX = 8
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const [open, setOpen] = useState(false)
+  const lastScrollY = useRef(0)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    lastScrollY.current = window.scrollY
+    const onScroll = () => {
+      const y = window.scrollY
+      setScrolled(y > 24)
+
+      const delta = y - lastScrollY.current
+      if (y <= HIDE_THRESHOLD_PX) {
+        setHidden(false)
+      } else if (delta > SCROLL_DELTA_PX) {
+        setHidden(true)
+      } else if (delta < -SCROLL_DELTA_PX) {
+        setHidden(false)
+      }
+      lastScrollY.current = y
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -45,6 +64,8 @@ export default function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        hidden && !open ? '-translate-y-full' : 'translate-y-0'
+      } ${
         scrolled
           ? 'border-b border-charcoal-line bg-ink/85 backdrop-blur-md'
           : 'border-b border-transparent bg-transparent'
