@@ -1,17 +1,7 @@
 import { Mail, MapPin, Phone } from 'lucide-react'
 import Logo from '../components/Logo'
-import { contactDetails, whatsappHref } from '../data/booking'
 import { navLinks } from '../data/navigation'
-import { socialLinks } from '../data/social'
-
-const mailHref = `mailto:${contactDetails.email}`
-const directionsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactDetails.address)}`
-
-const contactRows = [
-  { icon: Mail, value: contactDetails.email, href: mailHref },
-  { icon: Phone, value: contactDetails.phoneDisplay, href: whatsappHref },
-  { icon: MapPin, value: contactDetails.address, href: directionsHref },
-]
+import { useSiteContent } from '../lib/siteContent'
 
 function ColumnHeading({ children }) {
   return (
@@ -22,6 +12,17 @@ function ColumnHeading({ children }) {
 }
 
 export default function Footer() {
+  const { contactDetails, whatsappHref, socialLinks } = useSiteContent()
+
+  const mailHref = `mailto:${contactDetails.email}`
+  const directionsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactDetails.address)}`
+
+  const contactRows = [
+    { icon: Mail, value: contactDetails.email, href: mailHref },
+    { icon: Phone, value: contactDetails.phoneDisplay, href: whatsappHref },
+    { icon: MapPin, value: contactDetails.address, href: directionsHref },
+  ]
+
   return (
     <footer className="border-t border-charcoal-line bg-charcoal">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-16 lg:py-20">

@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react'
 import { X } from 'lucide-react'
-import { policySections } from '../data/policy'
+import { useSiteContent } from '../lib/siteContent'
 
 export default function PolicyModal({ onClose }) {
+  const { policySections, policyTitle } = useSiteContent()
   const closeButtonRef = useRef(null)
   const previouslyFocusedRef = useRef(null)
 
@@ -46,7 +47,7 @@ export default function PolicyModal({ onClose }) {
             id="policy-modal-title"
             className="font-display text-2xl tracking-wide text-white uppercase sm:text-3xl"
           >
-            Booking, Cancellation &amp; Refund Policy
+            {policyTitle}
           </h2>
           <button
             ref={closeButtonRef}

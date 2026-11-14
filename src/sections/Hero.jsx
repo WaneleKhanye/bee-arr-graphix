@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Drone } from 'lucide-react'
 import heroImage from '../assets/images/event-portrait-smiling.jpeg'
+import { useSiteContent } from '../lib/siteContent'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -11,7 +12,7 @@ const fadeUp = {
   }),
 }
 
-function Badge() {
+function Badge({ text }) {
   return (
     <motion.div
       initial="hidden"
@@ -24,7 +25,7 @@ function Badge() {
         <Drone className="h-3.5 w-3.5 text-sky-soft" strokeWidth={2} />
       </span>
       <span className="text-xs font-semibold tracking-wide text-sky-soft uppercase">
-        Now booking — aerial drone photography &amp; videography
+        {text}
       </span>
     </motion.div>
   )
@@ -48,7 +49,7 @@ function Headline() {
   )
 }
 
-function Description() {
+function Description({ text }) {
   return (
     <motion.p
       initial="hidden"
@@ -57,9 +58,7 @@ function Description() {
       variants={fadeUp}
       className="mt-6 max-w-md text-lg leading-relaxed text-white/60"
     >
-      Bee arR Graphix creates premium photography, videography and{' '}
-      <span className="font-semibold text-sky-soft">aerial drone coverage</span>{' '}
-      for weddings, portraits, graduations and events.
+      {text}
     </motion.p>
   )
 }
@@ -92,6 +91,7 @@ function Ctas({ className = '' }) {
 }
 
 export default function Hero() {
+  const { heroContent } = useSiteContent()
   return (
     <section id="home" className="relative overflow-hidden bg-ink">
       {/* Ambient glow — kept behind the copy column only */}
@@ -102,9 +102,9 @@ export default function Hero() {
       <div className="relative grid lg:min-h-screen lg:grid-cols-[1.05fr_1fr]">
         {/* Copy column */}
         <div className="relative z-10 mx-auto flex w-full max-w-2xl flex-col justify-center gap-2 px-6 pt-32 pb-16 lg:px-16 lg:py-24">
-          <Badge />
+          <Badge text={heroContent.badgeText} />
           <Headline />
-          <Description />
+          <Description text={heroContent.introText} />
 
           {/* Mobile photo — sits between description and CTAs, not hidden */}
           <motion.div

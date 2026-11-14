@@ -2,9 +2,10 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight, Drone } from 'lucide-react'
 import DroneReel from '../components/DroneReel'
 import ServiceCard from '../components/ServiceCard'
-import { services } from '../data/services'
+import { useSiteContent } from '../lib/siteContent'
 
 export default function Services() {
+  const { services } = useSiteContent()
   return (
     <section id="services" className="bg-ink px-6 py-24 lg:px-16 lg:py-32">
       <div className="mx-auto max-w-7xl">
@@ -74,7 +75,7 @@ export default function Services() {
         {/* Remaining services — editorial masonry */}
         <div className="mt-6 columns-1 gap-6 sm:columns-2 lg:columns-3">
           {services.map((service, i) => (
-            <ServiceCard key={service.title} service={service} delay={(i % 3) * 0.08} />
+            <ServiceCard key={`${service.title}-${i}`} service={service} delay={(i % 3) * 0.08} />
           ))}
         </div>
       </div>

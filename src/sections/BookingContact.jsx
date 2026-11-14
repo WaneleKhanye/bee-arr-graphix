@@ -8,12 +8,8 @@ import {
   MessageCircle,
   Phone,
 } from 'lucide-react'
-import {
-  contactDetails,
-  formspreeEndpoint,
-  serviceOptions,
-  whatsappHref,
-} from '../data/booking'
+import { formspreeEndpoint, serviceOptions } from '../data/booking'
+import { useSiteContent } from '../lib/siteContent'
 import PolicyModal from '../components/PolicyModal'
 
 const inputClass =
@@ -22,24 +18,25 @@ const inputClass =
 const labelClass =
   'mb-2 block text-xs font-semibold tracking-[0.2em] text-white/50 uppercase'
 
-const mailHref = `mailto:${contactDetails.email}`
-const directionsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactDetails.address)}`
-
-const contactRows = [
-  { icon: Mail, label: 'Email', value: contactDetails.email, href: mailHref },
-  { icon: MapPin, label: 'Address', value: contactDetails.address, href: directionsHref },
-  { icon: Phone, label: 'Phone / WhatsApp', value: contactDetails.phoneDisplay, href: whatsappHref },
-]
-
 const SUCCESS_MESSAGE =
   "Booking request received! Thank you for contacting Bee arR Graphix. We’ll get back to you shortly."
 const ERROR_MESSAGE =
   'Something went wrong. Please try again or contact us on WhatsApp.'
 
 export default function BookingContact() {
+  const { contactDetails, whatsappHref } = useSiteContent()
   const [status, setStatus] = useState('idle')
   const [policyOpen, setPolicyOpen] = useState(false)
   const isSubmitting = status === 'submitting'
+
+  const mailHref = `mailto:${contactDetails.email}`
+  const directionsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactDetails.address)}`
+
+  const contactRows = [
+    { icon: Mail, label: 'Email', value: contactDetails.email, href: mailHref },
+    { icon: MapPin, label: 'Address', value: contactDetails.address, href: directionsHref },
+    { icon: Phone, label: 'Phone / WhatsApp', value: contactDetails.phoneDisplay, href: whatsappHref },
+  ]
 
   async function handleSubmit(event) {
     event.preventDefault()
