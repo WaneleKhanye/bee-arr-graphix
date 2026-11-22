@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { workItems } from '../data/work'
+import { useSiteContent } from '../lib/siteContent'
 import Lightbox from '../components/Lightbox'
 
 const categories = [
@@ -14,6 +14,7 @@ const categories = [
 ]
 
 export default function SelectedWork() {
+  const { workItems } = useSiteContent()
   const [activeCategory, setActiveCategory] = useState('All')
   const [lightboxIndex, setLightboxIndex] = useState(null)
 
@@ -22,7 +23,7 @@ export default function SelectedWork() {
       activeCategory === 'All'
         ? workItems
         : workItems.filter((item) => item.category === activeCategory),
-    [activeCategory],
+    [activeCategory, workItems],
   )
 
   const handleCategoryChange = (category) => {
@@ -100,8 +101,9 @@ export default function SelectedWork() {
               >
                 {filteredItems.map((item, index) => (
                   <figure
-                    key={item.title}
-                    className={`group relative mb-5 block break-inside-avoid overflow-hidden rounded-xl ${item.aspect}`}
+                    key={`${item.category}-${item.title}-${index}`}
+                    style={{ aspectRatio: item.aspectRatio }}
+                    className="group relative mb-5 block break-inside-avoid overflow-hidden rounded-xl"
                   >
                     <button
                       type="button"
@@ -112,7 +114,8 @@ export default function SelectedWork() {
                       <img
                         src={item.image}
                         alt={item.alt}
-                        className={`h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${item.position}`}
+                        style={{ objectPosition: item.objectPosition }}
+                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                         loading="lazy"
                       />
                     </button>

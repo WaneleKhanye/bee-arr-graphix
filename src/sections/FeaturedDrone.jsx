@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Check, Drone } from 'lucide-react'
 import DroneReel from '../components/DroneReel'
-import { droneServices } from '../data/drone-services'
+import { useSiteContent } from '../lib/siteContent'
 import droneCarVideo from '../assets/video/drone-car-showcase.mp4'
 import droneCarPoster from '../assets/images/drone-car-showcase-poster.jpg'
 import droneNightVideo from '../assets/video/drone-night-flyover.mp4'
@@ -19,6 +19,7 @@ const fadeUp = {
 }
 
 export default function FeaturedDrone() {
+  const { droneIntro, droneOfferings } = useSiteContent()
   return (
     <section
       id="drone"
@@ -65,8 +66,7 @@ export default function FeaturedDrone() {
             variants={fadeUp}
             className="mt-5 max-w-lg text-lg leading-relaxed text-white/60"
           >
-            Professional aerial photography and cinematic drone footage for
-            events, cars, properties, businesses and special occasions.
+            {droneIntro}
           </motion.p>
 
           {/* Mobile video — sits between description and the service list */}
@@ -107,7 +107,7 @@ export default function FeaturedDrone() {
             variants={fadeUp}
             className="mt-9 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2 lg:gap-y-3"
           >
-            {droneServices.map((service) => (
+            {droneOfferings.map((service) => (
               <li
                 key={service}
                 className="flex items-center gap-3 text-base font-medium text-white/75 lg:gap-2.5 lg:text-sm"

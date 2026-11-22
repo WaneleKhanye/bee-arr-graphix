@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 
 export default function ServiceCard({ service, delay = 0 }) {
-  const { image, title, description, alt, aspect, position, ctaHref = '#portfolio' } = service
+  const { image, title, description, alt, aspectRatio, objectPosition, ctaHref = '#portfolio' } = service
 
   return (
     <motion.div
@@ -12,12 +12,13 @@ export default function ServiceCard({ service, delay = 0 }) {
       transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
       className="group mb-5 block break-inside-avoid overflow-hidden rounded-2xl border border-charcoal-line bg-charcoal-soft/40 transition-colors duration-300 hover:border-white/20 sm:mb-6"
     >
-      <div className={`relative overflow-hidden ${aspect}`}>
+      <div style={{ aspectRatio }} className="relative overflow-hidden">
         <img
           src={image}
           alt={alt}
           loading="lazy"
-          className={`h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${position}`}
+          style={{ objectPosition }}
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />
       </div>

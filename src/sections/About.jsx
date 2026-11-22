@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import aboutImage from '../assets/images/male-outdoor-portrait.jpeg'
 import { whyChooseUs } from '../data/why-choose-us'
+import { useSiteContent } from '../lib/siteContent'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -41,6 +42,7 @@ function Photo() {
 }
 
 export default function About() {
+  const { aboutContent } = useSiteContent()
   return (
     <section id="about" className="bg-ink px-6 pt-24 pb-16 lg:px-16 lg:pt-32 lg:pb-40">
       <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[1fr_0.9fr] lg:gap-20">
@@ -75,9 +77,7 @@ export default function About() {
             variants={fadeUp}
             className="mt-6 max-w-lg text-lg leading-relaxed text-white/60"
           >
-            Bee arR Graphix is a photography, videography and drone content
-            business based in Daveyton — capturing meaningful moments through
-            photography, video and aerial coverage.
+            {aboutContent.introText}
           </motion.p>
 
           {/* Mobile photo — sits between the intro and the rest of the copy */}
@@ -99,9 +99,7 @@ export default function About() {
             variants={fadeUp}
             className="max-w-lg text-white/60 lg:mt-6"
           >
-            From weddings, graduations and events to studio portraits, outdoor
-            shoots and business content, our goal is to create work that
-            feels personal, polished and memorable.
+            {aboutContent.secondaryText}
           </motion.p>
 
           <motion.p

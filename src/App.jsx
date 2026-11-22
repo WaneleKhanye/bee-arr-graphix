@@ -6,21 +6,24 @@ import FeaturedDrone from './sections/FeaturedDrone'
 import About from './sections/About'
 import BookingContact from './sections/BookingContact'
 import Footer from './sections/Footer'
+import { SiteContentProvider } from './lib/SiteContentProvider'
 
 function App() {
   return (
-    <div className="bg-ink">
-      <Navbar />
-      <main>
-        <Hero />
-        <Services />
-        <SelectedWork />
-        <FeaturedDrone />
-        <About />
-        <BookingContact />
-      </main>
-      <Footer />
-    </div>
+    <SiteContentProvider>
+      <div className="bg-ink">
+        <Navbar />
+        <main>
+          <Hero />
+          <Services />
+          <SelectedWork />
+          <FeaturedDrone />
+          <About />
+          <BookingContact />
+        </main>
+        <Footer />
+      </div>
+    </SiteContentProvider>
   )
 }
 
